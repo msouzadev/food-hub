@@ -6,7 +6,9 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
+import BackButton from "../../components/BackButton/BackButton";
 import Button from "../../components/Button/Buttons";
 import Container from "../../components/Container/Container";
 import Field from "../../components/Field/Field";
@@ -22,27 +24,27 @@ import {
   SignUpWith,
   SocialButtons,
   Title,
-} from "./Signup.styles";
+} from "./Login.styles";
 
 const facebookLogo = require("../../../assets/img/facebook-logo.png");
-
-const SignUp = () => {
+const { width } = Dimensions.get("screen");
+const Login = () => {
   const navigation = useNavigation();
-  const handleLogin = () => navigation.navigate("Login");
+  const handleBack = () => navigation.goBack();
+  const handleSignup = () => navigation.navigate("SignUp");
   return (
     <Container backgroundColor="#FFFFFF">
       <OrangeBall />
       <PinkBall />
       <SecondOrangeBall />
+      <BackButton onPress={handleBack} />
       <KeyboardAvoidingView
         behavior="padding"
-        style={{ marginTop: 76, flex: 1 }}
+        style={{ marginTop: width * 0.4, flex: 1 }}
       >
         <ScrollView contentContainerStyle={{ flex: 1 }}>
-          <Title>Sign Up</Title>
-          <Field>
-            <Input label="Full name" />
-          </Field>
+          <Title>Login</Title>
+
           <Field>
             <Input label="Email" />
           </Field>
@@ -50,7 +52,7 @@ const SignUp = () => {
             <Input isPassword label="Password" />
           </Field>
           <View style={{ paddingHorizontal: 20, marginTop: 30 }}>
-            <Button fullwidth color="primary" title="SIGN UP" />
+            <Button withShadow fullwidth color="primary" title="LOGIN" />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -61,9 +63,9 @@ const SignUp = () => {
           flexDirection: "row",
         }}
       >
-        <HasAccountText>Already have an account? </HasAccountText>
-        <TouchableOpacity onPress={handleLogin}>
-          <LoginText>Login</LoginText>
+        <HasAccountText>Don’t have an account? </HasAccountText>
+        <TouchableOpacity onPress={handleSignup}>
+          <LoginText>Sign Up</LoginText>
         </TouchableOpacity>
       </View>
       <SignUpContainer>
@@ -96,4 +98,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
