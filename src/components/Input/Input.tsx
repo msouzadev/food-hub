@@ -16,6 +16,7 @@ const Input = (props: InputProps) => {
         <TextInput {...rest} secureTextEntry={togglePassword} />
         {isPassword && (
           <TouchableOpacity
+            hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}
             onPress={handleTogglePassword}
             style={{
               position: "absolute",
