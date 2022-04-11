@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 import React, { useEffect, useState } from "react";
 import { theme } from "./src/styles/theme/theme";
 import { ThemeProvider } from "styled-components/native";
+import Routes from "./src/routes/routes";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -12,6 +13,7 @@ const fetchFonts = () => {
     "SFPro-Regular": require("./assets/fonts/Sofia-Pro-Regular.otf"),
     "SFPro-Medium": require("./assets/fonts/Sofia-Pro-Medium.otf"),
     "SFPro-Semi": require("./assets/fonts/Sofia-Pro-Semi.otf"),
+    "SFPro-Bold": require("./assets/fonts/Sofia-Pro-Bold.otf"),
   });
 };
 
@@ -26,12 +28,7 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Open up App.tsx to start working on your app!
-        </Text>
-        <StatusBar style="auto" />
-      </View>
+      <Routes />
     </ThemeProvider>
   );
 }
