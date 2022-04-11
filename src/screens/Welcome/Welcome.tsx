@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   View,
@@ -24,7 +25,10 @@ import {
 
 const welcomeBg = require("../../../assets/img/welcome-background.png");
 const facebookLogo = require("../../../assets/img/facebook-logo.png");
-const Welcome: React.FC = () => {
+
+const Welcome = () => {
+  const navigation = useNavigation();
+  const handleSignup = () => navigation.navigate("SignUp");
   return (
     <>
       <ImageBackground
@@ -61,6 +65,7 @@ const Welcome: React.FC = () => {
             <Button icon={<Image source={facebookLogo} />} title="FACEBOOK" />
           </SocialButtons>
           <Button
+            onPress={handleSignup}
             variant="outlined"
             title="Start with email or phone"
             fullwidth

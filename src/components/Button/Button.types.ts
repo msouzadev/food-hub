@@ -5,4 +5,6 @@ export interface ButtonProps extends TouchableOpacityProps {
   icon?: React.ReactElement;
   fullwidth?: boolean;
   variant?: string;
+  color?: "primary" | "secondary";
+  withShadow?: boolean;
 }
