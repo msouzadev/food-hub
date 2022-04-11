@@ -1,13 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Welcome from "../screens/Welcome/Welcome";
-import SignUp from "../screens/SignUp/SignUp";
 import AuthRoutes from "./auth.routes";
+import AppRotues from "./app.routes";
 
-const Stack = createNativeStackNavigator();
-const isLogged = false;
+const isLogged = true;
 const Routes = () => (
-  <NavigationContainer>{isLogged ? <></> : <AuthRoutes />}</NavigationContainer>
+  <NavigationContainer>
+    {isLogged ? <AppRotues /> : <AuthRoutes />}
+  </NavigationContainer>
 );
 export default Routes;
