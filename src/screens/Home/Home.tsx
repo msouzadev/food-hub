@@ -1,13 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
+import { useAppContext } from "../../context/AppContext";
 
-// import { Container } from './styles';
+const Home = (props) => {
+  const { toggleDrawer } = useAppContext();
 
-const Home = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: "red" }}>
-      <Text>Oksdasadasdas</Text>
-    </View>
+    <AppScreenContainer>
+      <TouchableOpacity onPress={toggleDrawer}>
+        <Text>OPEN</Text>
+      </TouchableOpacity>
+    </AppScreenContainer>
   );
 };
 
