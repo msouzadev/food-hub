@@ -2,13 +2,19 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import Card from "../../../../components/Card/Card";
 import {
+  FeaturedRestaurant,
+  FEATURED_RESTAURANTS,
+} from "./FeaturedRestaurants.data";
+import {
   Title,
   ViewAllButton,
   ViewAllText,
 } from "./FeaturedRestaurants.styles";
 
 const FeaturedRestaurants = () => {
-  const renderCard = ({ item }) => <Card {...item} />;
+  const renderCard = ({ item }: { item: FeaturedRestaurant }) => (
+    <Card {...item} />
+  );
   return (
     <View style={{ marginTop: 10 }}>
       <View
@@ -29,7 +35,7 @@ const FeaturedRestaurants = () => {
         contentContainerStyle={{ paddingTop: 20 }}
         horizontal
         keyExtractor={(item) => item.name}
-        data={[{ name: "McDonald's" }, { name: "Starbucks" }]}
+        data={FEATURED_RESTAURANTS}
         renderItem={renderCard}
       />
     </View>
