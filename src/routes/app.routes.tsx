@@ -1,9 +1,8 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
-import { Dimensions, Pressable, StyleSheet, View } from "react-native";
-import Home from "../screens/Home/Home";
+import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, {
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -12,13 +11,14 @@ import { useAppContext } from "../context/AppContext";
 import CustomDrawerMenu from "../navigation/CustomDrawerMenu/CustomDrawerMenu";
 import OverlayPressable from "../components/OverlayPressable";
 import HomeRoutes from "./home.routes";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 const menuWidth = width * 0.5;
 
 const AppRotues = () => {
   const anim = useSharedValue(0);
-  const { drawerIsOpen } = useAppContext();
+  const { drawerIsOpen, toggleDrawer } = useAppContext();
   useEffect(() => {
     anim.value = withTiming(drawerIsOpen ? 1 : 0);
   }, [drawerIsOpen]);
@@ -46,21 +46,31 @@ const AppRotues = () => {
     }),
     []
   );
-  return (
-    <View
-      style={{
-        backgroundColor: "#EEEEEE",
-        flex: 1,
-        flexDirection: "row",
-      }}
-    >
-      <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
-      <Animated.View style={[styles.appContainer, appStyle]}>
-        <OverlayPressable />
 
-        <HomeRoutes />
-      </Animated.View>
-    </View>
+  const panGesture = Gesture.Pan()
+    .onUpdate((e) => {})
+    .onEnd((e) => {
+      if (e.translationX >= 60) {
+        runOnJS(toggleDrawer)();
+      }
+    });
+  return (
+    <GestureDetector gesture={panGesture}>
+      <View
+        style={{
+          backgroundColor: "#EEEEEE",
+          flex: 1,
+          flexDirection: "row",
+        }}
+      >
+        <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
+        <Animated.View style={[styles.appContainer, appStyle]}>
+          <OverlayPressable />
+
+          <HomeRoutes />
+        </Animated.View>
+      </View>
+    </GestureDetector>
   );
 };
 
