@@ -3,6 +3,7 @@ import { FlatList, Image, ScrollView, View } from "react-native";
 import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
 import Input from "../../components/Input/Input";
 import Category from "./components/Category/Category";
+import FeaturedRestaurants from "./components/FeaturedRestaurants/FeaturedRestaurants";
 import Header from "./components/Header/Header";
 import { CATEGORIES, CategoryType } from "./Home.data";
 import { FilterButton, Title } from "./Home.styles";
@@ -36,6 +37,7 @@ const Home = (props) => {
           />
           <FilterButton
             style={{
+              marginRight: 5,
               shadowColor: "#000",
               shadowOffset: {
                 width: 0,
@@ -59,6 +61,7 @@ const Home = (props) => {
           keyExtractor={(item) => item.name}
           renderItem={renderCategoryItem}
         />
+        <FeaturedRestaurants />
       </ScrollView>
     </AppScreenContainer>
   );

@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, {
   interpolate,
+  interpolateColor,
+  interpolateColors,
   runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
@@ -17,11 +20,10 @@ const { width } = Dimensions.get("window");
 const menuWidth = width * 0.5;
 
 const AppRotues = () => {
-  const anim = useSharedValue(0);
   const { drawerIsOpen, toggleDrawer } = useAppContext();
-  useEffect(() => {
-    anim.value = withTiming(drawerIsOpen ? 1 : 0);
-  }, [drawerIsOpen]);
+  const anim = useDerivedValue(() => {
+    return withTiming(drawerIsOpen ? 1 : 0);
+  });
 
   const menuStyle = useAnimatedStyle(
     () => ({
