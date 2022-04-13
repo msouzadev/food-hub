@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  flex: 1;
+`;
 
 export const Label = styled.Text`
   font-family: ${({ theme }) => theme.fontsFamily.regular};
@@ -9,11 +11,11 @@ export const Label = styled.Text`
   line-height: 16px;
   margin-bottom: 12px;
 `;
-export const InputContainer = styled.View`
+export const InputContainer = styled.View<{ backgroundColor?: string }>`
   flex-direction: row;
-  background: #ffffff;
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : "#ffffff"};
   border: 1px solid #eeeeee;
-  box-shadow: 15px 20px 45px rgba(233, 233, 233, 0.25);
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
@@ -24,6 +26,6 @@ export const TextInput = styled.TextInput`
   font-size: 18px;
   line-height: 18px;
   color: #111719;
-  padding: 25px 20px;
+  padding: 20px;
   flex: 1;
 `;

@@ -11,17 +11,11 @@ import Animated, {
 import { useAppContext } from "../context/AppContext";
 import CustomDrawerMenu from "../navigation/CustomDrawerMenu/CustomDrawerMenu";
 import OverlayPressable from "../components/OverlayPressable";
+import HomeRoutes from "./home.routes";
 
 const { width } = Dimensions.get("window");
 const menuWidth = width * 0.5;
 
-const Stack = createNativeStackNavigator();
-
-const HomeStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="HomeTab" component={Home} />
-  </Stack.Navigator>
-);
 const AppRotues = () => {
   const anim = useSharedValue(0);
   const { drawerIsOpen } = useAppContext();
@@ -64,7 +58,7 @@ const AppRotues = () => {
       <Animated.View style={[styles.appContainer, appStyle]}>
         <OverlayPressable />
 
-        <HomeStack />
+        <HomeRoutes />
       </Animated.View>
     </View>
   );

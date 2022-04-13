@@ -6,14 +6,20 @@ import { InputProps } from "./Input.types";
 const eyeIcon = require("../../../assets/img/eye.png");
 
 const Input = (props: InputProps) => {
-  const { label, isPassword, ...rest } = props;
+  const { label, isPassword, icon, backgroundColor, ...rest } = props;
   const [togglePassword, setTogglePassword] = useState(!!isPassword);
   const handleTogglePassword = () => setTogglePassword(!togglePassword);
   return (
     <Container>
-      <Label>{label}</Label>
-      <InputContainer>
-        <TextInput {...rest} secureTextEntry={togglePassword} />
+      {label && <Label>{label}</Label>}
+      <InputContainer backgroundColor={backgroundColor}>
+        {icon && <View style={{ paddingLeft: 20 }}>{icon}</View>}
+        <TextInput
+          {...rest}
+          autoCorrect={false}
+          autoCapitalize="none"
+          secureTextEntry={togglePassword}
+        />
         {isPassword && (
           <TouchableOpacity
             hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}
