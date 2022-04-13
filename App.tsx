@@ -1,11 +1,10 @@
 import * as Font from "expo-font";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import React, { useEffect, useState } from "react";
 import { theme } from "./src/styles/theme/theme";
 import { ThemeProvider } from "styled-components/native";
 import Routes from "./src/routes/routes";
+import AppProvider from "./src/AppProvider";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -28,19 +27,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontFamily: "SFPro-Semi",
-  },
-});
