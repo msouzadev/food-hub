@@ -25,7 +25,7 @@ export const DeliveryDescription = styled.Text`
   font-family: ${({ theme }) => theme.fontsFamily.regular};
 `;
 
-export const Badge = styled.View`
+export const Badge = styled.View<{ isFood?: boolean }>`
   background-color: #ffffff;
   border-radius: 15px;
   padding: 6px;
@@ -39,7 +39,7 @@ export const Badge = styled.View`
     css`
       position: absolute;
       bottom: -10px;
-      left: 10;
+      left: 10px;
     `}
 `;
 export const Currency = styled.Text`
@@ -58,7 +58,9 @@ export const Description = styled.Text`
   color: #9796a1;
 `;
 
-export const FavoriteContainer = styled.TouchableOpacity`
+export const FavoriteContainer = styled.TouchableOpacity<{
+  isFavorited?: boolean;
+}>`
   width: 30px;
   height: 30px;
   border-radius: 15px;

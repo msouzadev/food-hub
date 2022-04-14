@@ -3,13 +3,14 @@ import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home/Home";
+import TabBar from "../components/TabBar/TabBar";
 
 const HomeTab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
 const HomeTabs = () => (
-  <HomeTab.Navigator screenOptions={{ headerShown: false }}>
+  <HomeTab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
     <HomeTab.Screen name="Home" component={Home} />
   </HomeTab.Navigator>
 );

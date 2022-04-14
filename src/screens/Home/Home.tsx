@@ -32,6 +32,18 @@ const Home = (props) => {
           }}
         >
           <Input
+            style={{
+              marginRight: 5,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.18,
+              shadowRadius: 1.0,
+
+              elevation: 1,
+            }}
             backgroundColor="#F3F3F3"
             placeholder="Find for food or restaurant..."
             icon={<Image source={searchIcon} />}

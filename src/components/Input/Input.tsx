@@ -6,7 +6,7 @@ import { InputProps } from "./Input.types";
 const eyeIcon = require("../../../assets/img/eye.png");
 
 const Input = (props: InputProps) => {
-  const { label, isPassword, icon, backgroundColor, ...rest } = props;
+  const { label, isPassword, icon, style, backgroundColor, ...rest } = props;
   const [togglePassword, setTogglePassword] = useState(!!isPassword);
   const handleTogglePassword = () => setTogglePassword(!togglePassword);
   return (
