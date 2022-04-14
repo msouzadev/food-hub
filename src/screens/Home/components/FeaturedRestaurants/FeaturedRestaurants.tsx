@@ -16,7 +16,7 @@ const FeaturedRestaurants = () => {
     <Card {...item} />
   );
   return (
-    <View style={{ marginTop: 10 }}>
+    <View style={{ marginTop: 10, flex: 1 }}>
       <View
         style={{
           flexDirection: "row",

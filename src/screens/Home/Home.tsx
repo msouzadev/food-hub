@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import Category from "./components/Category/Category";
 import FeaturedRestaurants from "./components/FeaturedRestaurants/FeaturedRestaurants";
 import Header from "./components/Header/Header";
+import PopularItems from "./components/PopularItems/PopularItems";
 import { CATEGORIES, CategoryType } from "./Home.data";
 import { FilterButton, Title } from "./Home.styles";
 
@@ -18,7 +19,7 @@ const Home = (props) => {
   return (
     <AppScreenContainer>
       <Header />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Title>
           What would you like{"\n"}
           to order
@@ -62,6 +63,7 @@ const Home = (props) => {
           renderItem={renderCategoryItem}
         />
         <FeaturedRestaurants />
+        <PopularItems />
       </ScrollView>
     </AppScreenContainer>
   );
