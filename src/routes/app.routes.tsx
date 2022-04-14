@@ -1,33 +1,29 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
-import { Dimensions, Pressable, StyleSheet, View } from "react-native";
-import Home from "../screens/Home/Home";
+import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, {
   interpolate,
+  interpolateColor,
+  interpolateColors,
+  runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import { useAppContext } from "../context/AppContext";
 import CustomDrawerMenu from "../navigation/CustomDrawerMenu/CustomDrawerMenu";
 import OverlayPressable from "../components/OverlayPressable";
+import HomeRoutes from "./home.routes";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 const menuWidth = width * 0.5;
 
-const Stack = createNativeStackNavigator();
-
-const HomeStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="HomeTab" component={Home} />
-  </Stack.Navigator>
-);
 const AppRotues = () => {
-  const anim = useSharedValue(0);
-  const { drawerIsOpen } = useAppContext();
-  useEffect(() => {
-    anim.value = withTiming(drawerIsOpen ? 1 : 0);
-  }, [drawerIsOpen]);
+  const { drawerIsOpen, toggleDrawer } = useAppContext();
+  const anim = useDerivedValue(() => {
+    return withTiming(drawerIsOpen ? 1 : 0);
+  });
 
   const menuStyle = useAnimatedStyle(
     () => ({
@@ -52,21 +48,31 @@ const AppRotues = () => {
     }),
     []
   );
-  return (
-    <View
-      style={{
-        backgroundColor: "#EEEEEE",
-        flex: 1,
-        flexDirection: "row",
-      }}
-    >
-      <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
-      <Animated.View style={[styles.appContainer, appStyle]}>
-        <OverlayPressable />
 
-        <HomeStack />
-      </Animated.View>
-    </View>
+  const panGesture = Gesture.Pan()
+    .onUpdate((e) => {})
+    .onEnd((e) => {
+      if (e.translationX >= 60) {
+        runOnJS(toggleDrawer)();
+      }
+    });
+  return (
+    <GestureDetector gesture={panGesture}>
+      <View
+        style={{
+          backgroundColor: "#EEEEEE",
+          flex: 1,
+          flexDirection: "row",
+        }}
+      >
+        <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
+        <Animated.View style={[styles.appContainer, appStyle]}>
+          <OverlayPressable />
+
+          <HomeRoutes />
+        </Animated.View>
+      </View>
+    </GestureDetector>
   );
 };
 

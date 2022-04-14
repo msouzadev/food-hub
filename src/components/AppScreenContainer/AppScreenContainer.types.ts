@@ -1,3 +1,3 @@
 export interface AppScreenContainerProps {
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactNode[];
 }
