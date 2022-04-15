@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home/Home";
 import TabBar from "../components/TabBar/TabBar";
+import Restaurant from "../screens/Restaurant/Restaurant";
 
 const HomeTab = createBottomTabNavigator();
 
@@ -17,6 +18,11 @@ const HomeTabs = () => (
 const HomeStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="HomeTab" component={HomeTabs} />
+    <Stack.Screen
+      // options={{ presentation: "fullScreenModal" }}
+      name="Restaurant"
+      component={Restaurant}
+    />
   </Stack.Navigator>
 );
 

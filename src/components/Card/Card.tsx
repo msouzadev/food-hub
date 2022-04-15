@@ -4,7 +4,7 @@ import Tag from "../Tag/Tag";
 import {
   Container,
   Title,
-  DescitionContainer,
+  DescriptionContainer,
   DeliveryDescription,
   Description,
   Price,
@@ -15,22 +15,62 @@ import {
   ReviewCount,
 } from "./Card.styles";
 
-const mcDonald = require("../../../assets/img/mcdonalds.png");
 const motoboyIcon = require("../../../assets/img/motoboy.png");
 const heartIcon = require("../../../assets/img/heart.png");
 const startIcon = require("../../../assets/img/star.png");
-const Card = (props) => {
-  const { name, isFood, description, price, isFavorited, rating, reviewCount } =
-    props;
+
+interface CardProps {
+  name: string;
+  isFood?: boolean;
+  description?: string;
+  price?: number;
+  isFavorited?: boolean;
+  rating?: number;
+  reviewCount: number;
+  onClick: (item: any) => void;
+  image: any;
+  width?: number;
+}
+const Card = (props: CardProps) => {
+  const {
+    name,
+    isFood,
+    description,
+    price,
+    isFavorited,
+    rating,
+    reviewCount,
+    onClick,
+    image,
+    width = 270,
+  } = props;
+  const handlePress = (item: any) => () => {
+    onClick(item);
+  };
   return (
-    <Container>
+    <Container
+      style={{
+        width,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.0,
+
+        elevation: 1,
+      }}
+      onPress={handlePress({ name, image })}
+    >
+      {/* @ts-ignore */}
       <ImageBackground
         style={{
           padding: 10,
           borderRadius: 15,
           height: 140,
         }}
-        source={mcDonald}
+        source={image}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Badge>
@@ -76,7 +116,7 @@ const Card = (props) => {
           </Badge>
         )}
       </ImageBackground>
-      <DescitionContainer>
+      <DescriptionContainer>
         <Title>{name}</Title>
         {!isFood && (
           <>
@@ -105,7 +145,7 @@ const Card = (props) => {
           </>
         )}
         {isFood && <Description>{description}</Description>}
-      </DescitionContainer>
+      </DescriptionContainer>
     </Container>
   );
 };

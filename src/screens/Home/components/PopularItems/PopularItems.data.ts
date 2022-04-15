@@ -5,6 +5,7 @@ export const POPULAR_ITEMS = [
     price: 5.5,
     reviewCount: 25,
     rating: 4.8,
+    image: require("../../../../../assets/img/pizzaFood.png"),
   },
   {
     name: "Pizza",
@@ -12,5 +13,6 @@ export const POPULAR_ITEMS = [
     price: 6.2,
     reviewCount: 25,
     rating: 4,
+    image: require("../../../../../assets/img/pizzaFood.png"),
   },
 ];

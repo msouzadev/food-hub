@@ -16,7 +16,6 @@ const Tag = (props) => {
     >
       <Text
         style={{
-          flex: 1,
           color: "#515154",
           fontFamily: "SFPro-Regular",
           fontSize: 13,

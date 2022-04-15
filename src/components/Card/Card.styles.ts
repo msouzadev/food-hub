@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.View`
-  width: 270px;
+export const Container = styled.TouchableOpacity`
+  /* width: 270px; */
   background: #ffffff;
   border-radius: 15px;
   margin-right: 30px;
@@ -15,7 +15,7 @@ export const Title = styled.Text`
   margin: 10px 0;
 `;
 
-export const DescitionContainer = styled.View`
+export const DescriptionContainer = styled.View`
   padding: 15px;
 `;
 

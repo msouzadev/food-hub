@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, Image, ScrollView, View } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
 import Input from "../../components/Input/Input";
 import Category from "./components/Category/Category";
@@ -13,9 +19,17 @@ const searchIcon = require("../../../assets/img/search.png");
 const filterIcon = require("../../../assets/img/filter.png");
 
 const Home = (props) => {
-  const renderCategoryItem = ({ item }: { item: CategoryType }) => (
-    <Category {...item} isSelected={item.name === "Burguer"} />
-  );
+  const renderCategoryItem = ({
+    item,
+    index,
+  }: {
+    item: CategoryType;
+    index: number;
+  }) => {
+    return (
+      <Category {...item} index={index} isSelected={item.name === "Burguer"} />
+    );
+  };
   return (
     <AppScreenContainer>
       <Header />
