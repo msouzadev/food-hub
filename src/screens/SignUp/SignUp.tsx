@@ -11,6 +11,7 @@ import Button from "../../components/Button/Buttons";
 import Container from "../../components/Container/Container";
 import Field from "../../components/Field/Field";
 import Input from "../../components/Input/Input";
+import { useAuthContext } from "../../context/AuthContext";
 import {
   HasAccountText,
   Line,
@@ -28,6 +29,7 @@ const facebookLogo = require("../../../assets/img/facebook-logo.png");
 
 const SignUp = () => {
   const navigation = useNavigation();
+  const { login } = useAuthContext();
   const handleLogin = () => navigation.navigate("Login");
   return (
     <Container backgroundColor="#FFFFFF">
@@ -38,7 +40,7 @@ const SignUp = () => {
         behavior="padding"
         style={{ marginTop: 76, flex: 1 }}
       >
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ScrollView>
           <Title>Sign Up</Title>
           <Field>
             <Input label="Full name" />
@@ -50,7 +52,7 @@ const SignUp = () => {
             <Input isPassword label="Password" />
           </Field>
           <View style={{ paddingHorizontal: 20, marginTop: 30 }}>
-            <Button fullwidth color="primary" title="SIGN UP" />
+            <Button onPress={login} fullwidth color="primary" title="SIGN UP" />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

@@ -5,6 +5,7 @@ import { theme } from "./src/styles/theme/theme";
 import { ThemeProvider } from "styled-components/native";
 import Routes from "./src/routes/routes";
 import AppProvider from "./src/AppProvider";
+import { AuthProvider } from "./src/context/AuthContext";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -27,9 +28,11 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <AppProvider>
-        <Routes />
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <Routes />
+        </AppProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

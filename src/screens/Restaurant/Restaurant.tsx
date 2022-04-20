@@ -7,6 +7,7 @@ import {
   FlatList,
 } from "react-native";
 import Animated, {
+  FadeInUp,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
@@ -120,10 +121,10 @@ const Restaurant = (props) => {
             />
           </View>
         </RestaurantLogoContainer>
-        <View style={{ justifyContent: "center", marginTop: 10 }}>
+        <Animated.View entering={FadeInUp.duration(700)} style={{ justifyContent: "center", marginTop: 10 }}>
           <RestaurantName>Mc Donald's</RestaurantName>
           <RestaurantAddress>4102 Pretty View Lanenda</RestaurantAddress>
-        </View>
+        </Animated.View>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <View
             style={{
