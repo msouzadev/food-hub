@@ -17,14 +17,13 @@ const AddToCartButton = () => {
     pressed.value = 1;
   };
   const handlePressOut = () => {
-    pressed.value = 0;
+    setTimeout(() => {
+      pressed.value = 0;
+    }, 1200);
   };
   const buttonStyles = useAnimatedStyle(() => ({
     height: 53,
-    width: withSequence(
-      withTiming(interpolate(pressed.value, [0, 1], [50, 200])),
-      withDelay(1000, withTiming(50))
-    ),
+    width: withTiming(interpolate(pressed.value, [0, 1], [50, 200])),
   }));
   const buttonTextStyles = useAnimatedStyle(() => ({
     opacity: withTiming(interpolate(pressed.value, [0, 1], [0, 1])),
