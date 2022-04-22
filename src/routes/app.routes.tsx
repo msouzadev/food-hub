@@ -49,30 +49,21 @@ const AppRotues = () => {
     []
   );
 
-  const panGesture = Gesture.Pan()
-    .onUpdate((e) => {})
-    .onEnd((e) => {
-      if (e.translationX >= 60) {
-        runOnJS(toggleDrawer)();
-      }
-    });
   return (
-    <GestureDetector gesture={panGesture}>
-      <View
-        style={{
-          backgroundColor: "#EEEEEE",
-          flex: 1,
-          flexDirection: "row",
-        }}
-      >
-        <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
-        <Animated.View style={[styles.appContainer, appStyle]}>
-          <OverlayPressable />
+    <View
+      style={{
+        backgroundColor: "#EEEEEE",
+        flex: 1,
+        flexDirection: "row",
+      }}
+    >
+      <CustomDrawerMenu menuStyles={[styles.menuContainer, menuStyle]} />
+      <Animated.View style={[styles.appContainer, appStyle]}>
+        <OverlayPressable />
 
-          <HomeRoutes />
-        </Animated.View>
-      </View>
-    </GestureDetector>
+        <HomeRoutes />
+      </Animated.View>
+    </View>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { FlatList, View } from "react-native";
 import Animated, {
@@ -13,6 +14,7 @@ import { Title } from "./PopularItems.styles";
 
 const PopularItems = () => {
   const isMounted = useSharedValue(0);
+  const navigation = useNavigation();
   useEffect(() => {
     isMounted.value = 1;
   }, []);
@@ -22,9 +24,12 @@ const PopularItems = () => {
       duration: 800,
     }),
   }));
+  const handleNavigateFoodDetail = (food) => {
+    navigation.navigate("Food", { food });
+  };
   const renderCard = ({ item }: { item: FeaturedRestaurant }) => (
     <Animated.View style={cardStyles}>
-      <Card {...item} isFood onClick={(item) => {}} />
+      <Card {...item} isFood onClick={handleNavigateFoodDetail} />
     </Animated.View>
   );
   return (

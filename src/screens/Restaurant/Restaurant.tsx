@@ -40,11 +40,11 @@ const restaurantLogo = require("../../../assets/img/restaurantLogo.png");
 const motoboyIcon = require("../../../assets/img/motoboy.png");
 const clockIcon = require("../../../assets/img/clock.png");
 const starIcon = require("../../../assets/img/restaurantStar.png");
-// const 
+
 const restaurantTags = ["PIZZA", "CHICKEN", "FAST FOOD"];
-const Restaurant = (props) => {
+const Restaurant = (props: any) => {
   const { route, navigation } = props;
-  const [categorySelected,setCategory] = useState('All')
+  const [categorySelected, setCategory] = useState("All");
   const { params } = route;
   const isMount = useSharedValue(0);
   useEffect(() => {
@@ -72,7 +72,17 @@ const Restaurant = (props) => {
     ],
   }));
 
-  const renderFoodCard = ({item,index}:{item:any,index:string}) => <Card  index={index} isFood width={150} {...item}/>
+  const handleNavigationFood = (item: any) =>
+    navigation.navigate("Food", { food: item });
+  const renderFoodCard = ({ item, index }: any) => (
+    <Card
+      index={index}
+      isFood
+      width={150}
+      onClick={handleNavigationFood}
+      {...item}
+    />
+  );
   return (
     <AppScreenContainer styles={{ backgroundColor: "#FFFFFF" }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -121,7 +131,10 @@ const Restaurant = (props) => {
             />
           </View>
         </RestaurantLogoContainer>
-        <Animated.View entering={FadeInUp.duration(700)} style={{ justifyContent: "center", marginTop: 10 }}>
+        <Animated.View
+          entering={FadeInUp.duration(700)}
+          style={{ justifyContent: "center", marginTop: 10 }}
+        >
           <RestaurantName>Mc Donald's</RestaurantName>
           <RestaurantAddress>4102 Pretty View Lanenda</RestaurantAddress>
         </Animated.View>
@@ -157,18 +170,35 @@ const Restaurant = (props) => {
               <DeliveryDescription>10-15 mins</DeliveryDescription>
             </View>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center",marginTop: 10}}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 10,
+            }}
+          >
             <Image source={starIcon} />
             <Rating>4.5</Rating>
             <ReviewCount>(30+)</ReviewCount>
             <TouchableOpacity>
-              <SeeReviewText>See Review ></SeeReviewText>
+              <SeeReviewText>See Review {">"} </SeeReviewText>
             </TouchableOpacity>
           </View>
         </View>
         <PopularItems />
-        <ListPicker onClick={setCategory} selected={categorySelected} items={foodCategories}/>
-        <FlatList contentContainerStyle={{paddingVertical: 20}} showsHorizontalScrollIndicator={false}  horizontal keyExtractor={item => item.name} data={foodItems} renderItem={renderFoodCard}/>
+        <ListPicker
+          onClick={setCategory}
+          selected={categorySelected}
+          items={foodCategories}
+        />
+        <FlatList
+          contentContainerStyle={{ paddingVertical: 20 }}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          keyExtractor={(item) => item.name}
+          data={foodItems}
+          renderItem={renderFoodCard}
+        />
       </ScrollView>
     </AppScreenContainer>
   );
