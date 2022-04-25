@@ -4,8 +4,6 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
-  withSequence,
   withTiming,
 } from "react-native-reanimated";
 import CartSvg from "../../../assets/icons/CartSvg";
@@ -25,6 +23,7 @@ const AddToCartButton = () => {
     height: 53,
     width: withTiming(interpolate(pressed.value, [0, 1], [50, 200])),
   }));
+
   const buttonTextStyles = useAnimatedStyle(() => ({
     opacity: withTiming(interpolate(pressed.value, [0, 1], [0, 1])),
   }));
