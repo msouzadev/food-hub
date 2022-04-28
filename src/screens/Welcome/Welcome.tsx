@@ -29,6 +29,7 @@ const facebookLogo = require("../../../assets/img/facebook-logo.png");
 const Welcome = () => {
   const navigation = useNavigation();
   const handleSignup = () => navigation.navigate("SignUp");
+  const handleSkip = () => navigation.navigate("HomeTabs");
   return (
     <>
       <ImageBackground
@@ -37,7 +38,7 @@ const Welcome = () => {
       />
       <Container>
         <Header>
-          <SkipButon>
+          <SkipButon onPress={handleSkip}>
             <SkipButtonText>Skip</SkipButtonText>
           </SkipButon>
         </Header>
