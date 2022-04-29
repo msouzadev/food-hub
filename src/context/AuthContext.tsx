@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from "react";
 const APP_CONTEXT_DEFAULT_VALUE = {
   isLogged: false,
   login: () => {},
+  logout: () => {},
 };
 
 export const AuthContext = createContext(APP_CONTEXT_DEFAULT_VALUE);
@@ -14,8 +15,13 @@ export const AuthProvider = ({ children }: any) => {
       setIsLogged(true);
     }, 1500);
   };
+  const handleLogout = () => {
+    setIsLogged(false);
+  };
   return (
-    <AuthContext.Provider value={{ isLogged, login: handleLogin }}>
+    <AuthContext.Provider
+      value={{ isLogged, login: handleLogin, logout: handleLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );

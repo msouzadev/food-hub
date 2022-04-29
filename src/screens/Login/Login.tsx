@@ -32,6 +32,7 @@ const Login = () => {
   const navigation = useNavigation();
   const handleBack = () => navigation.goBack();
   const handleSignup = () => navigation.navigate("SignUp");
+  const handleLogin = () => navigation.navigate("App");
   return (
     <Container backgroundColor="#FFFFFF">
       <OrangeBall />
@@ -42,7 +43,7 @@ const Login = () => {
         behavior="padding"
         style={{ marginTop: width * 0.4, flex: 1 }}
       >
-        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ScrollView>
           <Title>Login</Title>
 
           <Field>
@@ -52,7 +53,13 @@ const Login = () => {
             <Input isPassword label="Password" />
           </Field>
           <View style={{ paddingHorizontal: 20, marginTop: 30 }}>
-            <Button withShadow fullwidth color="primary" title="LOGIN" />
+            <Button
+              withShadow
+              fullwidth
+              color="primary"
+              onPress={handleLogin}
+              title="LOGIN"
+            />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

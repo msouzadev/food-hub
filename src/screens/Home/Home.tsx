@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { FlatList, Image, ScrollView, View } from "react-native";
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
 import Input from "../../components/Input/Input";
 import Category from "./components/Category/Category";
@@ -19,6 +20,7 @@ const searchIcon = require("../../../assets/img/search.png");
 const filterIcon = require("../../../assets/img/filter.png");
 
 const Home = (props) => {
+  const { route, navigation } = props;
   const renderCategoryItem = ({
     item,
     index,
@@ -30,6 +32,7 @@ const Home = (props) => {
       <Category {...item} index={index} isSelected={item.name === "Burguer"} />
     );
   };
+  const handleSearch = () => navigation.navigate("SearchFood");
   return (
     <AppScreenContainer>
       <Header />
@@ -38,7 +41,8 @@ const Home = (props) => {
           What would you like{"\n"}
           to order
         </Title>
-        <View
+        <TouchableOpacity
+          onPress={handleSearch}
           style={{
             flexDirection: "row",
             alignItems: "center",
@@ -46,6 +50,7 @@ const Home = (props) => {
           }}
         >
           <Input
+            onPressIn={handleSearch}
             style={{
               marginRight: 5,
               shadowColor: "#000",
@@ -78,7 +83,7 @@ const Home = (props) => {
           >
             <Image source={filterIcon} />
           </FilterButton>
-        </View>
+        </TouchableOpacity>
 
         <FlatList
           showsHorizontalScrollIndicator={false}
