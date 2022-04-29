@@ -6,12 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+
 import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
 import Input from "../../components/Input/Input";
 import Category from "./components/Category/Category";
@@ -55,7 +50,7 @@ const Home = (props) => {
           }}
         >
           <Input
-            editable={false}
+            onPressIn={handleSearch}
             style={{
               marginRight: 5,
               shadowColor: "#000",

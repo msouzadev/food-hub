@@ -29,7 +29,7 @@ const facebookLogo = require("../../../assets/img/facebook-logo.png");
 const Welcome = () => {
   const navigation = useNavigation();
   const handleSignup = () => navigation.navigate("SignUp");
-  const handleSkip = () => navigation.navigate("HomeTabs");
+  const handleSkip = () => navigation.navigate("App");
   return (
     <>
       <ImageBackground

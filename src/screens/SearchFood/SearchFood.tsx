@@ -30,7 +30,6 @@ const SearchFood = () => {
         style={{
           marginBottom: isRight ? 110 : 20,
           marginTop: isRight ? -80 : 0,
-          // marginLeft: isRight ? 10 : 0,
           flexGrow: 1,
           flexShirink: 0,
           flexBasis: "50%",
@@ -82,11 +81,31 @@ const SearchFood = () => {
         </FilterButton>
       </View>
       <Tabs
-        tabs={["Food Item", "Restaurant", "Other"]}
+        tabs={["Food Item", "Restaurant"]}
         active={currentTab}
         onChange={seCurrentTab}
       />
       {currentTab === 0 && (
+        <FlatList
+          numColumns={2}
+          // style={{ marginTop: 40 }}
+          contentContainerStyle={{
+            paddingVertical: 20,
+            marginTop: 40,
+            paddingBottom: 40,
+          }}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <ListTitle style={{ marginBottom: 10 }}>
+              Found {"\n"}30 results
+            </ListTitle>
+          }
+          data={foodItems}
+          keyExtractor={(item) => item.name}
+          renderItem={renderFoodCard}
+        />
+      )}
+      {currentTab === 1 && (
         <FlatList
           numColumns={2}
           // style={{ marginTop: 40 }}

@@ -3,6 +3,7 @@ import React from "react";
 import { Dimensions, FlatList, Image, View } from "react-native";
 import Button from "../../components/Button/Buttons";
 import { useAppContext } from "../../context/AppContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { MENU_LIST } from "./CustomDrawerMenu.data";
 import {
   Avatar,
@@ -25,10 +26,17 @@ const logOutImg = require("../../../assets/img/logout.png");
 const CustomDrawerMenu = (props: CustomDrawerMenuProps) => {
   const { menuStyles } = props;
   const { toggleDrawer } = useAppContext();
+  const { logout } = useAuthContext();
   const navigation = useNavigation();
+
   const handleNavigateToScreen = (screen: string) => () => {
     toggleDrawer();
   };
+  const handleLogout = () => {
+    toggleDrawer();
+    navigation.navigate("Auth");
+  };
+
   const renderMenu = (item: MenuItemType) => (
     <MenuItem onPress={handleNavigateToScreen(item.screen)}>
       <MenuIcon source={item.icon} />
@@ -57,6 +65,7 @@ const CustomDrawerMenu = (props: CustomDrawerMenuProps) => {
         }}
       >
         <Button
+          onPress={handleLogout}
           icon={<Image source={logOutImg} />}
           color="primary"
           title="Log Out"

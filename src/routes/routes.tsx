@@ -5,11 +5,21 @@ import AuthRoutes from "./auth.routes";
 import AppRotues from "./app.routes";
 import { useAuthContext } from "../context/AuthContext";
 
+const AppStack = createNativeStackNavigator();
 const Routes = () => {
   const { isLogged } = useAuthContext();
   return (
     <NavigationContainer>
-      {isLogged ? <AppRotues /> : <AuthRoutes />}
+      <AppStack.Navigator>
+        <AppStack.Group screenOptions={{ headerShown: false }}>
+          <AppStack.Screen name="Auth" component={AuthRoutes} />
+        </AppStack.Group>
+        <AppStack.Group
+          screenOptions={{ gestureEnabled: false, headerShown: false }}
+        >
+          <AppStack.Screen name="App" component={AppRotues} />
+        </AppStack.Group>
+      </AppStack.Navigator>
     </NavigationContainer>
   );
 };
