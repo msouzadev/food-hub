@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { FlatList, View, Image } from "react-native";
+import { FlatList, View, Image, Dimensions } from "react-native";
 import Animated, {
+  Extrapolate,
   interpolate,
   useAnimatedScrollHandler,
   useAnimatedStyle,
@@ -8,15 +9,16 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
-import AppScreenContainer from "../../components/AppScreenContainer/AppScreenContainer";
 import { oboardingImages } from "./Onboarding.data";
-import { CircleContainer } from "./Onboarding.styles";
+import { CircleContainer, Dot, DotsContainer } from "./Onboarding.styles";
 
+const { width } = Dimensions.get("window");
 const Onboarding = () => {
   const isMounted = useSharedValue(0);
   const scrollX = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler((event) => {
-    scrollX.value = event.contentOffset.x;
+  const scrollHandler = useAnimatedScrollHandler((e) => {
+    console.log(e.contentOffset.x);
+    scrollX.value = e.contentOffset.x;
   });
 
   const _onViewableItemsChanged = ({ viewableItems, changed }: any) => {
@@ -82,104 +84,134 @@ const Onboarding = () => {
     zIndex: withTiming(interpolate(isMounted.value, [0, 1], [0, 2])),
   }));
 
-  const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
   useEffect(() => {
     isMounted.value = 1;
   }, []);
-
-  const renderOboardingItem = ({ item, index }: any) => {
+  const renderOboardingItem = (item, index) => {
     return (
-      <CircleContainer
-        style={{
-          marginHorizontal: 30,
-        }}
-      >
-        <Animated.View
-          style={[
+      <View style={{ width, justifyContent: "center", alignItems: "center" }}>
+        <CircleContainer
+          style={
             {
-              position: "absolute",
-              top: 120,
-            },
-            subImage1Style,
-          ]}
+              // marginHorizontal: index > 0 ? 50 : 30,
+            }
+          }
         >
-          <Image source={item.subs[0]} />
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-            },
-            subImage2Style,
-          ]}
-        >
-          <Image source={item.subs[1]} />
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-            },
-            subImage3Style,
-          ]}
-        >
-          <Image source={item.subs[2]} />
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-            },
-            subImage4Style,
-          ]}
-        >
-          <Image source={item.subs[3]} />
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-            },
-            subImage5Style,
-          ]}
-        >
-          <Image source={item.subs[4]} />
-        </Animated.View>
-        <Image
-          source={item.mainImage}
-          style={{
-            marginTop: -40,
-          }}
-        />
-      </CircleContainer>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+                top: 120,
+              },
+              subImage1Style,
+            ]}
+          >
+            <Image source={item.subs[0]} />
+          </Animated.View>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+              },
+              subImage2Style,
+            ]}
+          >
+            <Image source={item.subs[1]} />
+          </Animated.View>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+              },
+              subImage3Style,
+            ]}
+          >
+            <Image source={item.subs[2]} />
+          </Animated.View>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+              },
+              subImage4Style,
+            ]}
+          >
+            <Image source={item.subs[3]} />
+          </Animated.View>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+              },
+              subImage5Style,
+            ]}
+          >
+            <Image source={item.subs[4]} />
+          </Animated.View>
+          <Image
+            source={item.mainImage}
+            style={{
+              marginTop: -40,
+            }}
+          />
+        </CircleContainer>
+      </View>
     );
   };
   return (
-    <AppScreenContainer>
-      <View style={{ alignItems: "center" }}>
-        <AnimatedFlatList
-          progressViewOffset={30}
-          viewabilityConfig={{
-            viewAreaCoveragePercentThreshold: 50,
-          }}
-          keyExtractor={(item, index) => `onboarding-image-${index}`}
+    <View style={{ flex: 1, paddingTop: 50 }}>
+      <View>
+        <Animated.ScrollView
+          scrollEventThrottle={30}
           snapToAlignment="center"
           pagingEnabled
           bounces={false}
           decelerationRate="fast"
-          onViewableItemsChanged={_onViewableItemsChanged}
           onScroll={scrollHandler}
           showsHorizontalScrollIndicator={false}
           horizontal
-          data={oboardingImages}
-          contentContainerStyle={{
-            paddingTop: 40,
-          }}
-          renderItem={renderOboardingItem}
-        />
+          contentContainerStyle={{ paddingTop: 40 }}
+        >
+          {oboardingImages.map(renderOboardingItem)}
+        </Animated.ScrollView>
       </View>
-    </AppScreenContainer>
+
+      <DotsContainer>
+        {oboardingImages.map((_, index) => {
+          const inputRange = [
+            (index - 1) * width,
+            index * width,
+            (index + 1) * width,
+          ];
+
+          const dotWidth = interpolate(
+            scrollX.value,
+            inputRange,
+            [8, 10, 100],
+            Extrapolate.CLAMP
+          );
+
+          const dotHeight = interpolate(
+            scrollX.value,
+            inputRange,
+            [8, 10, 8],
+            Extrapolate.CLAMP
+          );
+
+          return (
+            <Animated.View
+              key={`dots-${index}`}
+              style={{
+                marginHorizontal: 8,
+                backgroundColor: "#ffc529",
+                width: dotWidth,
+                height: dotHeight,
+              }}
+            />
+          );
+        })}
+      </DotsContainer>
+    </View>
   );
 };
 
