@@ -17,11 +17,3 @@ export const DotsContainer = styled.View`
   justify-content: center;
   margin-top: 50px;
 `;
-
-export const Dot = styled(Animated.View)`
-  background: #ffc529;
-  height: 10px;
-  border-radius: 8px;
-  margin: 0 8px;
-  width: ${(props) => props.width}px;
-`;
