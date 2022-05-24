@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
@@ -9,11 +9,9 @@ import { oboardingImages } from "./Onboarding.data";
 import { DotsContainer } from "./Onboarding.styles";
 import OnboardingItem from "./OnboardingItem";
 
-const { width } = Dimensions.get("window");
 const Onboarding = () => {
   const scrollX = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((e) => {
-    console.log(e.contentOffset.x);
     scrollX.value = e.contentOffset.x;
   });
   return (
