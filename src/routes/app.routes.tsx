@@ -2,19 +2,14 @@ import React, { useEffect } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, {
   interpolate,
-  interpolateColor,
-  interpolateColors,
-  runOnJS,
   useAnimatedStyle,
   useDerivedValue,
-  useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import { useAppContext } from "../context/AppContext";
 import CustomDrawerMenu from "../navigation/CustomDrawerMenu/CustomDrawerMenu";
 import OverlayPressable from "../components/OverlayPressable";
 import HomeRoutes from "./home.routes";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 const menuWidth = width * 0.5;
