@@ -39,4 +39,6 @@ export const CircleButton = styled.TouchableOpacity`
   height: 67px;
   border-radius: ${67 / 2}px;
   background-color: #fe724c;
+  justify-content: center;
+  align-items: center;
 `;

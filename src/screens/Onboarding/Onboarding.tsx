@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import ArrowRightSvg from "../../../assets/icons/ArrowRight";
 import Dot from "./Dot";
 import { oboardingImages, onboardingText } from "./Onboarding.data";
 import {
@@ -117,7 +118,9 @@ const Onboarding = () => {
           marginBottom: 40,
         }}
       >
-        <CircleButton onPress={handleNextItem} />
+        <CircleButton onPress={handleNextItem}>
+          <ArrowRightSvg />
+        </CircleButton>
       </View>
     </View>
   );
