@@ -16,4 +16,37 @@ export const FEATURED_RESTAURANTS: FeaturedRestaurant[] = [
     reviewCount: 10,
     image: require("../../../../../assets/img/mcdonalds.png"),
   },
+  {
+    name: "McDonald's",
+    isFavorited: true,
+    reviewCount: 40,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
+  {
+    name: "Starbucks",
+    reviewCount: 10,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
+  {
+    name: "McDonald's",
+    isFavorited: true,
+    reviewCount: 40,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
+  {
+    name: "Starbucks",
+    reviewCount: 10,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
+  {
+    name: "McDonald's",
+    isFavorited: true,
+    reviewCount: 40,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
+  {
+    name: "Starbucks",
+    reviewCount: 10,
+    image: require("../../../../../assets/img/mcdonalds.png"),
+  },
 ];

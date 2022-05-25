@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { FlatList, View } from "react-native";
 import Animated, {
   interpolate,
+  SlideInRight,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -19,16 +20,11 @@ const PopularItems = () => {
     isMounted.value = 1;
   }, []);
 
-  const cardStyles = useAnimatedStyle(() => ({
-    left: withTiming(interpolate(isMounted.value, [0, 1], [-300, 0]), {
-      duration: 800,
-    }),
-  }));
   const handleNavigateFoodDetail = (food) => {
     navigation.navigate("Food", { food });
   };
   const renderCard = ({ item }: { item: FeaturedRestaurant }) => (
-    <Animated.View style={cardStyles}>
+    <Animated.View entering={SlideInRight.delay(300)}>
       <Card {...item} isFood onClick={handleNavigateFoodDetail} />
     </Animated.View>
   );
