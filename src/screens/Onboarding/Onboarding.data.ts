@@ -30,3 +30,21 @@ export const oboardingImages = [
     ],
   },
 ];
+
+export const onboardingText = [
+  {
+    title: "Browse your  menu  and order directly",
+    description:
+      "Our app can send you everywhere, even space. For only $2.99 per month",
+  },
+  {
+    title: "Even to space with us! Together",
+    description:
+      "Our app can send you everywhere, even space. For only $2.99 per month",
+  },
+  {
+    title: "Pickup delivery at your door",
+    description:
+      "Our app can send you everywhere, even space. For only $2.99 per month",
+  },
+];

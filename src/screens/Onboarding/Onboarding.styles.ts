@@ -17,3 +17,26 @@ export const DotsContainer = styled.View`
   justify-content: center;
   margin-top: 50px;
 `;
+
+export const Title = styled.Text`
+  color: #131a38;
+  font-size: 36px;
+  line-height: 43px;
+  font-family: ${({ theme }) => theme.fontsFamily.regular};
+`;
+
+export const Description = styled.Text`
+  font-family: ${({ theme }) => theme.fontsFamily.regular};
+  color: #616772;
+  font-size: 17px;
+  line-height: 27px;
+  text-align: center;
+  margin-top: 16px;
+`;
+
+export const CircleButton = styled.TouchableOpacity`
+  width: 67px;
+  height: 67px;
+  border-radius: ${67 / 2}px;
+  background-color: #fe724c;
+`;
