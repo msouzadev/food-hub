@@ -6,6 +6,7 @@ import TabBar from "../components/TabBar/TabBar";
 import Restaurant from "../screens/Restaurant/Restaurant";
 import Food from "../screens/Food/Food";
 import SearchFood from "../screens/SearchFood/SearchFood";
+import Cart from "../screens/Cart/Cart";
 
 const HomeTab = createBottomTabNavigator();
 
@@ -17,11 +18,15 @@ const HomeTabs = () => (
   </HomeTab.Navigator>
 );
 const HomeStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+  <Stack.Navigator
+    initialRouteName="Cart"
+    screenOptions={{ headerShown: false }}
+  >
     <Stack.Screen name="HomeTab" component={HomeTabs} />
     <Stack.Screen name="Restaurant" component={Restaurant} />
     <Stack.Screen name="Food" component={Food} />
     <Stack.Screen name="SearchFood" component={SearchFood} />
+    <Stack.Screen name="Cart" component={Cart} />
   </Stack.Navigator>
 );
 

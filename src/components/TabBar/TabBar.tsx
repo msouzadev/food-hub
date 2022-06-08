@@ -24,12 +24,19 @@ const routes: TabBarItem[] = [
   { name: "Notification", icon: NotificationsSvg },
 ];
 const TabBar = (props: TabBarProps) => {
-  const { state } = props;
+  const { state, navigation } = props;
+  console.log({ props });
+  const navigateToScreen = (screen) => () => {
+    if (routes.find((route) => route.name === screen)) {
+      navigation.navigate(screen);
+    }
+  };
   const renderTabItem = (item: TabBarItem, index: number) => {
     const isActive = index === state.index;
+    console.log(routes);
 
     return (
-      <TabItem key={item.name}>
+      <TabItem key={item.name} onPress={navigateToScreen(item.name)}>
         {isActive ? (
           <Animated.View entering={FadeInUp}>
             <item.icon color={Colors.orange} />

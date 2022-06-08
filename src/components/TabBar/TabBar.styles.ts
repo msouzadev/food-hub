@@ -9,7 +9,7 @@ export const Container = styled.View`
   padding-bottom: 35px;
 `;
 
-export const TabItem = styled.View`
+export const TabItem = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
