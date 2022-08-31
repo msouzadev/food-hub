@@ -19,7 +19,7 @@ const HomeTabs = () => (
 );
 const HomeStack = () => (
   <Stack.Navigator
-    initialRouteName="Cart"
+    // initialRouteName="Cart"
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name="HomeTab" component={HomeTabs} />
